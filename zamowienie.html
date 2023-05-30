@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+        <link rel="Stylesheet" type="text/css" href="zamowienia.css">
+<script type="text/javascript">
+function obliczanie(dane)
+{
+kwota.innerHTML=" ";
+wynikn.innerHTML=" ";
+cena_koncowa=0;
+if (dane.wielkosc_galki.selectedIndex==0)
+{
+cena_koncowa=2+cena_koncowa;
+}
+if (dane.wielkosc_galki.selectedIndex==1)
+{
+cena_koncowa=3+cena_koncowa;
+}
+if (dane.wielkosc_galki.selectedIndex==2)
+{
+cena_koncowa=4+cena_koncowa;
+}
+
+
+
+
+if (dane.smak.selectedIndex==0)
+{
+cena_koncowa=2+cena_koncowa;
+}
+if (dane.smak.selectedIndex==1)
+{
+cena_koncowa=3+cena_koncowa;
+}
+if (dane.smak.selectedIndex==2)
+{
+cena_koncowa=4+cena_koncowa;
+}
+
+
+
+if (dane.ilosc.selectedIndex==0)
+{
+cena_koncowa=cena_koncowa;
+}
+if (dane.ilosc.selectedIndex==1)
+{
+cena_koncowa=2*cena_koncowa;
+}
+if (dane.ilosc.selectedIndex==2)
+{
+cena_koncowa=3*cena_koncowa;
+}
+
+
+if(dane.dodatek1.checked == true)
+{
+cena_koncowa=2+cena_koncowa;
+}
+if(dane.dodatek2.checked == true)
+{
+cena_koncowa=3+cena_koncowa;
+}
+if(dane.dodatek3.checked == true)
+{
+cena_koncowa=4+cena_koncowa;
+}
+
+
+if(dane.rabat1.checked == true)
+{
+cena_koncowa=cena_koncowa;
+document.getElementById("rabat").innerHTML = "0%"; 
+}
+if(dane.rabat2.checked == true)
+{
+cena_koncowa=0.9*cena_koncowa;
+document.getElementById("rabat").innerHTML = "10%"; 
+}
+if(dane.rabat3.checked == true)
+{
+cena_koncowa=0.8*cena_koncowa;
+document.getElementById("rabat").innerHTML = "20%"; 
+}
+
+wynikn.innerHTML=cena_koncowa.toFixed(2)+" zł";
+
+if(dane.VAT1.checked == true)
+{
+document.getElementById("VAT").innerHTML = "5%"; 
+cena_koncowa=1.05*cena_koncowa;
+}
+if(dane.VAT2.checked == true)
+ {
+document.getElementById("VAT").innerHTML = "8%";
+cena_koncowa=1.08*cena_koncowa;
+}
+if(dane.VAT3.checked == true)
+ {
+document.getElementById("VAT").innerHTML = "23%";
+cena_koncowa=1.23*cena_koncowa;
+}
+kwota.innerHTML=cena_koncowa.toFixed(2)+" zł";
+}
+</script>
+<script>
+    function dane()
+    {
+    document.getElementById("wynik1").innerHTML = (document.getElementById("Imie").value)+" "+(document.getElementById("Nazwisko").value);; 
+    document.getElementById("wynik2").innerHTML = (document.getElementById("Ulica").value)+" "+(document.getElementById("Nrdomu").value);; 
+    document.getElementById("wynik3").innerHTML = (document.getElementById("Miasto").value); 
+    document.getElementById("wynik4").innerHTML = (document.getElementById("email").value); 
+    document.getElementById("wynik5").innerHTML ="Nr. telefonu: "+(document.getElementById("Nrtel").value); 
+    }
+</script>
+<script>
+    var data = new Date();
+    function Data()
+    {
+        document.getElementById("data").innerHTML="Wystawiono dnia: "+(data.getFullYear())+"-"+(data.getMonth()+1)+"-"+(data.getDate())+", Gdańsk";
+        document.getElementById("data1").innerHTML="Faktura VAT nr FV "+(data.getDate())+"/"+(data.getMonth()+1)+"/"+(data.getFullYear());          
+        document.getElementById("data2").innerHTML="Data sprzedaży:  "+(data.getFullYear())+"-"+(data.getMonth()+1)+"-"+(data.getDate());
+        document.getElementById("data3").innerHTML="Termin płatności:  "+(data.getFullYear())+"-"+(data.getMonth()+1)+"-"+(data.getDate());
+        
+    }
+</script>
+</head>
+<body>
+<form name="formularz">
+    <div class="box">
+        <h1>Zamówienie Lodów</h1> 
+
+    <label>
+        <span>Wielkość gałki</span><br><br>
+            <select name="wielkosc_galki" class="wpis"> >
+                <option value="0"> Mała 2 zł
+                <option value="1"> Średnia 3 zł
+                <option value="2"> Duża 4 zł 
+            </select><br><br>
+    </label>
+
+    <label>
+        <span>Podaj liczbę gałek</span><br><br>
+        <select name="ilosc" class="wpis"> >
+            <option value="0"> 1
+            <option value="0"> 2
+            <option value="0"> 3 
+        </select><br><br>
+    </label>
+
+    <label> 
+        <span>Wybierz smak lodów</span><br><br>
+            <select name="smak" class="wpis">
+                <option value="0"> Czekoladowe 2 zł
+                <option value="1"> Truskawkowe 3 zł
+                <option value="2"> Śmietankowe 4 zł
+            </select><br><br>
+    </label>
+
+    <label> 
+        <span>Wybierz dodatek do lodów</span><br><br><br>
+            Posypka 2 zł <input type="checkbox" class="wpis" name="dodatek1" value=0 /><br><br>
+            Polewa 3 zł <input type="checkbox" class="wpis" name="dodatek2" value=0 /><br><br>
+            Owoce 4 zł <input type="checkbox" class="wpis" name="dodatek3" value=0 /><br><br>
+    </label>
+
+    <label> 
+        <span>Podaj rabat </span><br><br>
+            Rabat 0% <input type="checkbox" name="rabat1" value=0 class="wpis" id="Rabat1"/><br><br>
+            Rabat 10% <input type="checkbox" name="rabat2" value=0 class="wpis" id="Rabat2"/><br><br>
+            Rabat 20% <input type="checkbox" name="rabat3" value=0 class="wpis" id="Rabat3"/><br><br>
+    </label>
+
+    <label> 
+        <span>Podaj VAT </span><br><br>
+            5% <input type="checkbox" name="VAT1" value=0 class="wpis"/><br><br>
+            8% <input type="checkbox" name="VAT2" value=0 class="wpis"/><br><br>
+            23% <input type="checkbox" name="VAT3" value=0 class="wpis"/><br><br>
+            
+    </label>
+<!-- <input type="button" value="Oblicz....." onClick="obliczanie(this.form)"/><br><br> -->
+
+<input type="button" value="Potwierdzenie danych zamówienia" onClick="obliczanie(this.form)"/><br><br>
+</form>
+<table>
+<tr id="wynik"></tr>
+</table>
+<form name="Dane">
+    <div class="box">
+        <h1>Dane Kupującego</h1> 
+        <label>
+            <span>Wprowadź swoje imię</span><br><br>
+                <input name="Imię" class="wpis" id="Imie"/>
+        </label>
+
+        <label>
+            <span>Wprowadź swoje nazwisko</span><br><br>
+                <input name="Nazwisko" class="wpis" id="Nazwisko"/>
+        </label> 
+
+        <label> 
+            <span>Wprowadź swój adres poczty elektronicznej </span><br><br>
+                <input name="email" class="wpis" id="email"/>
+        </label> 
+
+        <label> 
+        <span>Wprowadź swój numer telefonu</span><br><br><br>
+        <input name="Nrtel" class="wpis" id="Nrtel"/>
+        </label>
+
+        <h1>Adres zamieszkania</h1>
+        <label> 
+            <span>Wprowadź miasto</span><br><br><br>
+                <input name="Miasto" class="wpis" id="Miasto"/>
+        </label>
+
+        <label> 
+            <span>Wprowadź ulice</span><br><br><br>
+                <input name="Ulica" class="wpis" id="Ulica"/>
+        </label>
+
+        <label> 
+            <span>Wprowadź numer mieszkania/domu</span><br><br><br><br><br>
+                <input name="Nrdomu" class="wpis" id="Nrdomu"/>
+        </label>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br>
+        <input type="button" value="Potwierdzenie danych osobowych" onClick="dane(this.form)"/><br><br>
+    </form>
+    <form>
+        <input type="button" value="Wykonanie faktury" onClick="Data(this.form)"/><br><br
+    </form>
+    <br><br><br><br><br><br><br>
+    <table style="width: 100%; height: 15em">
+        <tr>
+            <td><p id="data"></p></td><td></td><td><p id="data1"><br><p id="data2"><br><p>Sposób zapłaty: Przelew<br><p id="data3"></p><br><br><br><br></td>
+        </tr>
+        <tr>
+            <td ALIGN=left><p>Sprzedawca:<br>Frima: Lodziarnia<br>ul. Kwietniowa 15A/10<br>80-007 Gdańsk<br>NIP: 8361223415<br>kontakt@lodziarnia.pl</p></td><td></td><td><p>Nabywca:</p><br><p id="wynik1"></p><p id="wynik2"><p id="wynik3"></p></td>
+        </tr>
+        <tr>
+            <td></td><td></td><td><p>Dane kontaktowe:</p><br><p id="wynik4"></p><p id="wynik5"></p></td>
+        </tr>
+     </table>
+     <table style="width: 100%; height: 3em " border="1">
+        <tr>
+            <td>LP</td><td>Nazwa towaru/usługi</td><td>Rabat</td><td>Ilość</td><td>Cena netto</td><td>VAT</td><td>Cena Brutto</td>
+        </tr>
+
+        <tr>
+            <td>1</td><td>Lód</td><td><p id="rabat"></p></td><td>1 szt.</td><td><p id="wynikn"></td><td><p id="VAT"></p></td><td><p id="kwota"></p></td>
+        </tr>
+    </table>
+</body>
+</html>
